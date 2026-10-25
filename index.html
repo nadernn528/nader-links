@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نادر الشمراني</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* درجات الأخضر من اللوقو */
+      --green-deep: #23372c;        /* الأخضر الأساسي من خلفية اللوقو */
+      --green-card: #2b4237;        /* درجة أفتح للبطاقات */
+      --green-hover: #334f42;       /* درجة أفتح للهوفر */
+      --green-icon: #3d5c4e;        /* صندوق الأيقونة */
+      --cream: #f0ead8;             /* الكريمي الأساسي من خط اللوقو */
+      --cream-soft: #d8e2d0;        /* كريمي مخضر للأوصاف */
+      --cream-dim: rgba(216, 226, 208, 0.55);
+      --border: #3a5546;
+      --border-icon: #466355;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      background: var(--green-deep);
+      color: var(--cream);
+      min-height: 100vh;
+      padding: 48px 16px 56px;
+    }
+
+    .wrapper {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 40px 20px 48px;
+      border-radius: 8px;
+      box-shadow: 0 0 0 1px rgba(240, 234, 216, 0.08);
+      display: flex; flex-direction: column; align-items: center;
+      gap: 28px;
+      animation: rise .45s cubic-bezier(.2,.9,.3,1.15) both;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* الرأس */
+    .avatar {
+      width: 92px; height: 92px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 0 1px rgba(240, 234, 216, 0.45);
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .name {
+      margin-top: 14px;
+      font-size: 20px; font-weight: 300; line-height: 1.2;
+      color: var(--cream); text-align: center;
+    }
+    .tagline {
+      margin-top: 2px;
+      font-size: 14px; font-weight: 400; line-height: 1.4;
+      color: var(--cream-dim); text-align: center;
+    }
+
+    /* الروابط */
+    .links { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+    .link-card {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px; width: 100%;
+      background: rgba(240, 234, 216, 0.05);
+      border-radius: 2px;
+      box-shadow: 0 0 0 1px var(--border);
+      text-decoration: none; color: inherit;
+      transition: background .2s ease;
+    }
+    .link-card:hover { background: rgba(240, 234, 216, 0.1); }
+    .icon-box {
+      width: 36px; height: 36px; border-radius: 20px;
+      background: var(--green-icon);
+      box-shadow: 0 0 0 1px var(--border-icon);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .icon-box svg { width: 20px; height: 20px; stroke: var(--cream); stroke-width: 1.5; fill: none; }
+    .link-text { flex: 1; }
+    .link-title { font-size: 14px; font-weight: 400; line-height: 1.15; color: var(--cream); }
+    .link-sub { font-size: 14px; font-weight: 400; line-height: 1.35; color: var(--cream-dim); margin-top: 2px; }
+
+    /* البطاقة المميزة (CV) */
+    .link-card.cv {
+      background: linear-gradient(135deg, var(--green-card), var(--green-hover));
+      box-shadow: 0 0 0 1px var(--border-icon);
+    }
+
+    /* بطاقات المشاريع */
+    .projects { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+    .project-card {
+      background: rgba(240, 234, 216, 0.05);
+      border-radius: 2px;
+      box-shadow: 0 0 0 1px var(--border);
+      overflow: hidden;
+      text-decoration: none; color: inherit; display: block;
+      transition: background .2s ease;
+    }
+    .project-card:hover { background: rgba(240, 234, 216, 0.1); }
+    .project-banner {
+      height: 84px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; font-weight: 700; color: var(--cream);
+      letter-spacing: 1px;
+    }
+    .project-body { padding: 14px 16px 16px; }
+    .project-name { font-size: 14px; font-weight: 500; line-height: 1.15; color: var(--cream); }
+    .project-desc { font-size: 13.5px; font-weight: 400; line-height: 1.6; color: var(--cream-dim); margin-top: 4px; }
+    .project-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+    .tag {
+      font-size: 11px; font-weight: 500;
+      background: rgba(240, 234, 216, 0.08);
+      color: var(--cream-soft);
+      padding: 3px 10px; border-radius: 2px;
+      box-shadow: 0 0 0 1px var(--border);
+    }
+    .project-link {
+      margin-top: 12px;
+      font-size: 13px; font-weight: 500; color: var(--cream);
+    }
+
+    /* الفاصل */
+    .divider { width: 40px; height: 2px; border-radius: 8px; background: var(--cream); opacity: .24; }
+
+    /* الفوتر */
+    .footer {
+      font-size: 11.5px; letter-spacing: -0.02em;
+      color: var(--cream-dim); text-align: center;
+    }
+    .footer .sep { opacity: .4; margin: 0 6px; }
+
+    @media (max-width: 480px) {
+      body { padding: 24px 12px 40px; }
+      .wrapper { padding: 32px 16px 40px; }
+      .links, .projects { gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- الرأس -->
+  <div style="display:flex;flex-direction:column;align-items:center;">
+    <div class="avatar"><img src="logo.png" alt="نادر"></div>
+    <div class="name">نادر الشمراني</div>
+    <div class="tagline">خريج إدارة عامة · أوظف الذكاء الاصطناعي لبناء أدوات ورفع كفاءة العمليات</div>
+  </div>
+
+  <!-- ١. تواصل مهني -->
+  <div class="links" style="width:100%">
+
+    <a class="link-card cv" href="#">
+      <div class="icon-box" style="background:rgba(240,234,216,.14)">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 14h8v2H8v-2zm0-4h8v2H8v-2z"/></svg>
+      </div>
+      <div class="link-text">
+        <div class="link-title">تحميل السيرة الذاتية</div>
+        <div class="link-sub">نسخة PDF محدثة</div>
+      </div>
+    </a>
+
+    <a class="link-card" href="https://wa.me/966500845953?text=أهلاً%20نادر،%20تواصلت%20معك%20بعد%20استعراض%20صفحتك%20المهنية">
+      <div class="icon-box" style="background:rgba(37,211,102,.2);box-shadow:0 0 0 1px rgba(37,211,102,.35)">
+        <svg viewBox="0 0 24 24" style="stroke:#7ee2a0"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.9 1.2 2.9.8 3.4.8.5-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.3-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
+      </div>
+      <div class="link-text">
+        <div class="link-title">واتساب — تواصل مهني</div>
+        <div class="link-sub">للشغل والوظائف والشراكات</div>
+      </div>
+    </a>
+
+    <a class="link-card" href="https://www.linkedin.com/in/nader-alshamrani-3444ab286">
+      <div class="icon-box" style="background:rgba(10,102,194,.2);box-shadow:0 0 0 1px rgba(10,102,194,.35)">
+        <svg viewBox="0 0 24 24" style="stroke:#7ab3e8"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      </div>
+      <div class="link-text">
+        <div class="link-title">لينكد إن</div>
+        <div class="link-sub">ملفي المهني</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ٢. نظام التشغيل الشخصي -->
+  <div class="projects">
+
+    <a class="project-card" href="https://github.com/nadernn528/nune-showcase" style="text-decoration:none;color:inherit;display:block">
+      <div class="project-banner" style="background:linear-gradient(135deg,#2b4237,#23372c)">Nune</div>
+      <div class="project-body">
+        <div class="project-name">نظام تشغيل شخصي بالذكاء الاصطناعي</div>
+        <div class="project-desc">منصة مملوكة أُسست من الصفر تُصنّع وكلاء ذكيين ومحركات أتمتة، وتدير المشاريع والمعرفة والاتصالات — مركز تحكم شخصي كامل.</div>
+        <div class="project-tags">
+          <span class="tag">منصة</span>
+          <span class="tag">وكلاء ذكيون</span>
+          <span class="tag">أتمتة</span>
+        </div>
+        <div class="project-link">استعرض المعرض ←</div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ٣. تطبيقات الذكاء الاصطناعي -->
+  <div class="projects">
+
+    <a class="project-card" href="https://github.com/nadernn528/nune-showcase" style="text-decoration:none;color:inherit;display:block">
+      <div class="project-banner" style="background:linear-gradient(135deg,#3d5c4e,#2b4237)">تطبيقات الذكاء الاصطناعي</div>
+      <div class="project-body">
+        <div class="project-name">مجموعة تطبيقات بنتها بالذكاء الاصطناعي</div>
+        <div class="project-desc">أدوات بنيتها تحل مشاكل حقيقية: فاحص متاجر يولّد تقرير تقييم احترافي، مراقب أسعار منافسين ينبّه على كل تغيّر — والمجموعة تتوسع.</div>
+        <div class="project-tags">
+          <span class="tag">ذكاء اصطناعي</span>
+          <span class="tag">أتمتة</span>
+          <span class="tag">أدوات</span>
+        </div>
+        <div class="project-link">استعرض المعرض ←</div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="footer">
+    نادر الشمراني<span class="sep">·</span>جدة، السعودية
+  </div>
+
+</div>
+</body>
+</html>
